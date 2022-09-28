@@ -6,5 +6,11 @@ Heap heap = new Heap();
 heap.Insert("a");
 heap.Insert("c");
 heap.Insert("b");
-Console.WriteLine(heap.Remove());
+string output;
+// Print sorted input:
+while ((output = heap.Remove()) != null)
+{
+    Console.WriteLine(output);
+}
+
 
