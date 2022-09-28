@@ -19,6 +19,11 @@ namespace HeapTests
             Assert.AreEqual(1 + 1, 2, "Test Description");
         }
 
+        [TestMethod]
+        public void StringComparison()
+        {
+            Assert.IsTrue(string.Compare("A", "B") < 0);
+        }
 
         [TestMethod]
         public void InsertThenRemove()
