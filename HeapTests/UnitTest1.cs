@@ -9,8 +9,10 @@ namespace HeapTests
     {
         Heap heap;
         [TestInitialize]
-        public void Initialize() {
-        heap = new Heap();
+        public void Initialize()
+        {
+            // Before each test, create a new heap
+            heap = new Heap();
         }
 
         [TestMethod]
@@ -60,6 +62,22 @@ namespace HeapTests
             Assert.AreEqual("A", heap.Remove());
             Assert.AreEqual("B", heap.Remove());
             Assert.AreEqual("C", heap.Remove());
+        }
+
+        [TestMethod]
+        public void ManyInserts()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                heap.Insert("B");
+            }
+            heap.Insert("A");
+            for (int i = 0; i < 10; i++)
+            {
+                heap.Insert("C");
+            }
+            Assert.AreEqual("A", heap.Remove());
+            Assert.AreEqual("B", heap.Remove());
         }
 
     }
