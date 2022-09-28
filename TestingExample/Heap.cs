@@ -12,12 +12,14 @@ namespace TestingExample
 
         public void Insert(string s)
         {
-
+            heap.Add(s);
         }
 
         public string Remove()
         {
-            return null;
+            string topOfHeap = heap[0];
+            heap.RemoveAt(0);
+            return topOfHeap;
         }
     }
 }
