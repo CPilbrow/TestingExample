@@ -32,6 +32,9 @@ namespace TestingExample
 
         public string Remove()
         {
+            // If the heap is empty, return a null string
+            if(heap.Count == 0) return null;
+
             string topOfHeap = heap[0];
 
             // 1. Replace the root node by the right-most node at the bottom level of the tree
