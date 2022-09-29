@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using TestingExample;
 
@@ -36,10 +37,17 @@ namespace HeapTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Exception))]
         public void RemoveFromEmptyHeap()
         {
             string result = heap.Remove();
-            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void InsertNull()
+        {
+            heap.Insert(null);
         }
 
         [TestMethod]

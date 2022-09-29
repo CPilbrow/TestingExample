@@ -11,9 +11,13 @@ namespace TestingExample
     {
         List<T> heap = new List<T>();
 
+        public int Count { get => heap.Count; }
+
         public void Insert(T s)
         {
-            Debug.Assert ( s != null );
+            // If s is null, crash early
+            if (s == null) throw new NullReferenceException("Input value cannot be null");
+
             int newPos = heap.Count;
 
             // 1. Add a node for the new element into the left - most empty slot in the lowest level of the tree
@@ -34,8 +38,8 @@ namespace TestingExample
 
         public T Remove()
         {
-            // If the heap is empty, return a null string
-            if (heap.Count == 0) return default(T);
+            // If the heap is empty, crash early
+            if (heap.Count == 0) throw new Exception("Cannot remove from an empty list");
 
             T topOfHeap = heap[0];
 

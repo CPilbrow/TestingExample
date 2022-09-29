@@ -8,8 +8,10 @@ heap.Insert("c");
 heap.Insert("b");
 string output;
 // Print sorted input:
-while ((output = heap.Remove()) != null)
+
+while (heap.Count > 0)
 {
+    output = heap.Remove();
     Console.WriteLine(output);
 }
 
