@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace TestingExample
 {
-    public class Heap
+    public class Heap<T> where T : IComparable
     {
-        List<string> heap = new List<string>();
+        List<T> heap = new List<T>();
 
-        public void Insert(string s)
+        public void Insert(T s)
         {
             Debug.Assert ( s != null );
             int newPos = heap.Count;
@@ -20,10 +20,10 @@ namespace TestingExample
             heap.Add(s);
 
             // 2. If the new node is the root of the tree, or the value of the new node is larger than or equal to its parent, stop the algorithm
-            while (!(newPos == 0 || String.Compare(s,heap[(newPos-1)/2]) >= 0))
+            while (!(newPos == 0 || s.CompareTo(heap[(newPos-1)/2]) >= 0))
             {
                 // 3. Swap the node with its parent and go back to Step 2
-                string temp = heap[(newPos - 1) / 2];
+                T temp = heap[(newPos - 1) / 2];
                 heap[(newPos - 1) /2] = s;
                 heap[newPos] = temp;
                 newPos = (newPos - 1) / 2;
@@ -32,15 +32,15 @@ namespace TestingExample
 
         }
 
-        public string Remove()
+        public T Remove()
         {
             // If the heap is empty, return a null string
-            if(heap.Count == 0) return null;
+            if (heap.Count == 0) return default(T);
 
-            string topOfHeap = heap[0];
+            T topOfHeap = heap[0];
 
             // 1. Replace the root node by the right-most node at the bottom level of the tree
-            string migratedNode = heap[heap.Count - 1];
+            T migratedNode = heap[heap.Count - 1];
             heap[0] = migratedNode;
             int newPos = 0;
             while (true)
@@ -55,17 +55,17 @@ namespace TestingExample
                 // if there is only a left successor, then if it is larger, stop
                 if (rightChildPos >= heap.Count)
                 {
-                    if (String.Compare(heap[leftChildPos], migratedNode) >= 0) break;
+                    if (heap[leftChildPos].CompareTo(migratedNode) >= 0) break;
                     greatestSuccessorPos = leftChildPos;
                 }
                 else
                 {
                     // If there are two successors, check which is smaller first.
-                    greatestSuccessorPos = String.Compare(heap[leftChildPos], heap[rightChildPos]) < 0 ? leftChildPos : rightChildPos;
-                    if (String.Compare(heap[greatestSuccessorPos], migratedNode) >= 0) break;
+                    greatestSuccessorPos = heap[leftChildPos].CompareTo( heap[rightChildPos]) < 0 ? leftChildPos : rightChildPos;
+                    if (heap[greatestSuccessorPos].CompareTo( migratedNode) >= 0) break;
                 }
                 // 3. Swap the migrated node with its smallest successor and go back to Step 2
-                string greatestSuccessor = heap[greatestSuccessorPos];
+                T greatestSuccessor = heap[greatestSuccessorPos];
                 heap[newPos] = greatestSuccessor;
                 heap[greatestSuccessorPos] = migratedNode;
                 newPos = greatestSuccessorPos;

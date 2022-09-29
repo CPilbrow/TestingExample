@@ -7,12 +7,12 @@ namespace HeapTests
     [TestClass]
     public class UnitTest1
     {
-        Heap heap;
+        Heap<string> heap;
         [TestInitialize]
         public void Initialize()
         {
             // Before each test, create a new heap
-            heap = new Heap();
+            heap = new Heap<string>();
         }
 
         [TestMethod]
