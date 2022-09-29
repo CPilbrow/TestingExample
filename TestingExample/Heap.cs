@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace TestingExample
 
         public void Insert(string s)
         {
+            Debug.Assert ( s != null );
             int newPos = heap.Count;
 
             // 1. Add a node for the new element into the left - most empty slot in the lowest level of the tree
