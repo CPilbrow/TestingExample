@@ -82,5 +82,43 @@ namespace HeapTests
 
     }
 
+    [TestClass]
+    public class UnitTestIntHeap
+    {
+        Heap<int> heap;
+        [TestInitialize]
+        public void Initialize()
+        {
+            // Before each test, create a new heap
+            heap = new Heap<int>();
+        }
+
+
+
+        [TestMethod]
+        public void T123()
+        {
+            heap.Insert(1);
+            heap.Insert(2);
+            heap.Insert(3);
+            Assert.AreEqual(1, heap.Remove());
+            Assert.AreEqual(2, heap.Remove());
+            Assert.AreEqual(3, heap.Remove());
+        }
+
+        [TestMethod]
+        public void T321()
+        {
+            heap.Insert(3);
+            heap.Insert(2);
+            heap.Insert(1);
+            Assert.AreEqual(1, heap.Remove());
+            Assert.AreEqual(2, heap.Remove());
+            Assert.AreEqual(3, heap.Remove());
+        }
+    }
+
+
+
 
 }
